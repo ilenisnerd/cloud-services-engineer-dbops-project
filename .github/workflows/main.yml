@@ -12,7 +12,7 @@ jobs:
 
     #### Добавьте шаг с Flyway-миграциями
     - name: Set up Flyway
-      uses: flyway/flyway-action@v3
+      uses: joshuaavalon/flyway-action@v3.0.0
       with: 
         url: jdbc:postgresql://158.160.32.164:5432/store
         user: ${{ secrets.DB_USER }}
