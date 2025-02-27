@@ -20,7 +20,7 @@ jobs:
         locations: filesystem:migrations
     - name: Run Flyway migrations
       run: |
-        flyway migrate
+        /usr/local/flyway/flyway migrate
       env:
         FLYWAY_URL: jdbc:postgresql://localhost:5432/store
         FLYWAY_USER: ${{ secrets.DB_USER }}
