@@ -12,15 +12,14 @@ jobs:
 
     #### Добавьте шаг с Flyway-миграциями
     - name: Set up Flyway
-      uses: joshuaavalon/flyway-action@v3.0.0
-      with: 
-        url: jdbc:postgresql://158.160.32.164:5432/store
-        user: ${{ secrets.DB_USER }}
-        password: ${{ secrets.DB_PASSWORD }}
-        locations: filesystem:migrations
+      run: |
+        curl -L -o flyway-commandline.tar.gz "https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/11.1.0/flyway-commandline-11.1.0-linux-x64.tar.gz"
+        tar -xzf flyway-commandline.tar.gz
+        sudo ln -s \`pwd\`/flyway-11.1.0/flyway /usr/local/bin/flyway 
+
     - name: Run Flyway migrations
       run: |
-        /usr/local/flyway/flyway migrate
+        /usr/local/bin/flyway migrate
       env:
         FLYWAY_URL: jdbc:postgresql://localhost:5432/store
         FLYWAY_USER: ${{ secrets.DB_USER }}
