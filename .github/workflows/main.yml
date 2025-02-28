@@ -24,7 +24,7 @@ jobs:
         -password=${{ secrets.DB_PASSWORD }}
     - name: Проверка запроса
       run: |
-        PGPASSWORD=${{ secrets.DB_PASSWORD }} psql -h ${{ secrets.DB_HOST }} -p ${{ secrets.DB_PORT }} -U ${{ secrets.DB_USER }} -d ${{ secrets.DB_NAME }} -c "SELECT * FROM orders WHERE id BETWEEN 1 AND 10;"
+        PGPASSWORD=${{ secrets.DB_PASSWORD }} psql -h ${{ secrets.DB_HOST }} -p ${{ secrets.DB_PORT }} -U ${{ secrets.DB_USER }} -d ${{ secrets.DB_NAME }} -c "SELECT * FROM orders WHERE id BETWEEN 1 AND 10; SELECT * FROM product WHERE id BETWEEN 1 AND 10;"
 
     ### Этот шаг оставьте без изменений
     - name: Download and setup autotests binaries
