@@ -14,7 +14,7 @@ jobs:
     - name: Set up Flyway
       run: |
         docker pull redgate/flyway:11.3.4
-        docker run --rm -v $(pwd)/migrations:/flyway/sql redgate/flyway:11.3.4 repair \
+        docker run --rm -v $(pwd)/migrations:/flyway/sql redgate/flyway:11.3.4 clean \
         -url=jdbc:postgresql://${{ secrets.DB_HOST }}:${{ secrets.DB_PORT }}/${{ secrets.DB_NAME }} \
         -user=${{ secrets.DB_USER }} \
         -password=${{ secrets.DB_PASSWORD }}
