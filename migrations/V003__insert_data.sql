@@ -9,6 +9,10 @@ INSERT INTO product (id, name, picture_url, price) VALUES (5, 'Мюнхенск�
 INSERT INTO product (id, name, picture_url, price) VALUES (6, 'Русская', 'https://res.cloudinary.com/sugrobov/image/upload/v1623323635/repos/sausages/1.jpg', 189.00);
 
 
+ALTER SYSTEM SET tcp_keepalives_interval = 10; -- Интервал между проверками активности, 10 секунд
+ALTER SYSTEM SET tcp_keepalives_count = 10;     -- Количество попыток перед закрытием, 3 попытки
+SET statement_timeout = '30min'; -- 30 минут для запросов
+
 -- Заполнение таблицы orders данными
 INSERT INTO orders (id, status, date_created) SELECT i, (array['pending', 'shipped', 'cancelled'])[floor(random() * 3 + 1)], DATE(NOW() - (random() * (NOW()+'90 days' - NOW()))) FROM generate_series(1, 10000000) s(i);
 
