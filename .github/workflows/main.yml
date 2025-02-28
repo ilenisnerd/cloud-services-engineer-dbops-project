@@ -10,10 +10,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    #### Добавьте шаг с Flyway-миграциями
+    #### Добавьте шаг с Flyway-миграциями sudo snap install flyway
     - name: Set up Flyway
       run: |
-        sudo snap install flyway
+        docker pull redgate/flyway:11.3.4
 
     - name: Run Flyway migrations
       run: |
