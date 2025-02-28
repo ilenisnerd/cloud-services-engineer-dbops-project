@@ -22,6 +22,7 @@ jobs:
         -url=jdbc:postgresql://${{ secrets.DB_HOST }}:${{ secrets.DB_PORT }}/${{ secrets.DB_NAME }} \
         -user=${{ secrets.DB_USER }} \
         -password=${{ secrets.DB_PASSWORD }}
+        -flyway.cleanDisabled=false
     - name: Проверка запроса
       run: |
         PGPASSWORD=${{ secrets.DB_PASSWORD }} psql -h ${{ secrets.DB_HOST }} -p ${{ secrets.DB_PORT }} -U ${{ secrets.DB_USER }} -d ${{ secrets.DB_NAME }} -c "SELECT * FROM orders WHERE id BETWEEN 1 AND 10; SELECT * FROM product WHERE id BETWEEN 1 AND 10;"
